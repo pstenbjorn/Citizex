@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script type="text/javascript">
+	function GetElectionData() 
+	{ 
+	    // Create an instance of the HTTP request object 
+	    var xmlHttp = new XMLHttpRequest(); 
+	 
+	    // Specify HTTP GET by default and supply the relative url 
+	    xmlHttp.open("GET", "/ps_api/?controller=get_election&action=read&election_id=1&election_date=11/04/2014&election_title=general%202014&jurisdiction=fairfax%20county", false); 
+	     
+	    // Start a synchronous AJAX request and wait 
+	    // for the response 
+	    xmlHttp.send(null); 
+	     
+	    var targetNode = document.getElementById("divElection"); 
+	 
+	    // Use the HTML returned from server to create list 
+	    targetNode.innerHTML = xmlHttp.responseText; 
+	}				
+	
+	function clearIt() {
+		document.getElementById("divElection").innerHTML="&nbsp;";
+		
+	}
+
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Calling LocalAPI</title>
+</head>
+<body>
+<div id="divElection"></div>
+<p>
+<input type="button" onclick="GetElectionData();" value="Get Data">
+<br />
+<input type="button" onclick="clearIt();" value="Clear">
+
+</body>
+</html>
